@@ -1,1 +1,30 @@
-{}
+{
+  "referenceList": [
+    "gg"
+  ],
+  "referenceListDetails": {
+    "gg": {
+      "title": "gg",
+      "categories": [
+        {
+          "title": "sub gg",
+          "entries": [
+            {
+              "name": "redgg",
+              "description": "this is red gg description",
+              "sections": [
+                {
+                  "header": "hader 1",
+                  "description": "more description"
+                }
+              ],
+              "examples": [
+                "print('tttt')"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
