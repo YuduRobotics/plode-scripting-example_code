@@ -5,7 +5,14 @@
   ],
   "referenceListDetails": {
     "gggw": {
-      "title": "gggw"
+      "title": "gggw",
+      "categories": [
+        {
+          "title": "gg project",
+          "description": "gg project description",
+          "language": "python"
+        }
+      ]
     },
     "nnnn": {
       "title": "nnnn",
