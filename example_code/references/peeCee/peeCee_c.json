@@ -1,7 +1,8 @@
 {
   "referenceList": [
     "gg",
-    "ss"
+    "ss",
+    "tt"
   ],
   "referenceListDetails": {
     "gg": {
@@ -35,6 +36,14 @@
         },
         {
           "title": "ss sub2"
+        }
+      ]
+    },
+    "tt": {
+      "title": "tt",
+      "categories": [
+        {
+          "title": "tt sub"
         }
       ]
     }
