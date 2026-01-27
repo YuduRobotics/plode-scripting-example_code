@@ -1,1 +1,27 @@
-{}
+{
+  "referenceList": [
+    "ref1",
+    "ref2"
+  ],
+  "referenceListDetails": {
+    "ref1": {
+      "title": "ref1",
+      "categories": [
+        {
+          "title": "ref 1 sub 1"
+        }
+      ]
+    },
+    "ref2": {
+      "title": "ref2",
+      "categories": [
+        {
+          "title": "re2 sub1"
+        },
+        {
+          "title": "ref 2 sub2"
+        }
+      ]
+    }
+  }
+}
