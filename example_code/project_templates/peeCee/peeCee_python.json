@@ -1,1 +1,26 @@
-{}
+{
+  "referenceList": [
+    "gggw",
+    "nnnn"
+  ],
+  "referenceListDetails": {
+    "gggw": {
+      "title": "gggw"
+    },
+    "nnnn": {
+      "title": "nnnn",
+      "categories": [
+        {
+          "title": "project 1",
+          "complexity": "Intermediate",
+          "language": "python",
+          "description": "project 1 description",
+          "deviceFeatures": [
+            "sdd",
+            "dasdsd"
+          ]
+        }
+      ]
+    }
+  }
+}
