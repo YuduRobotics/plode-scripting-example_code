@@ -1,6 +1,7 @@
 {
   "referenceList": [
-    "gg"
+    "gg",
+    "ss"
   ],
   "referenceListDetails": {
     "gg": {
@@ -23,6 +24,17 @@
               ]
             }
           ]
+        }
+      ]
+    },
+    "ss": {
+      "title": "ss",
+      "categories": [
+        {
+          "title": "ss sub 1"
+        },
+        {
+          "title": "ss sub2"
         }
       ]
     }
