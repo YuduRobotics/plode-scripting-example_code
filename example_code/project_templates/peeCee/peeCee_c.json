@@ -9,6 +9,17 @@
       "categories": [
         {
           "title": "ref 1 sub 1"
+        },
+        {
+          "title": "ref1 project2",
+          "description": "ref1 project2  description",
+          "language": "c",
+          "complexity": "Intermediate",
+          "deviceFeatures": [
+            "led",
+            "servo"
+          ],
+          "imgLink": "https://raw.githubusercontent.com/YuduRobotics/plode-scripting-example_code/main/example_code/project_templates/peeCee/assets/0000-943972563900104604.png"
         }
       ]
     },
