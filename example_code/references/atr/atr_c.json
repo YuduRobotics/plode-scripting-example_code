@@ -1,1 +1,31 @@
-{}
+{
+  "referenceList": [
+    "catagory"
+  ],
+  "referenceListDetails": {
+    "catagory": {
+      "title": "catagory",
+      "categories": [
+        {
+          "title": "sub catagory",
+          "description": "this is sub catagory",
+          "entries": [
+            {
+              "name": "pwd read",
+              "description": "this is pwd read description",
+              "sections": [
+                {
+                  "header": "header 1",
+                  "description": "description for header 1"
+                }
+              ],
+              "examples": [
+                "print('JJj')"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
