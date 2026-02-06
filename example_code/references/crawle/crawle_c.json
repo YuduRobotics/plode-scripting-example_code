@@ -1,1 +1,35 @@
-{}
+{
+  "referenceList": [
+    "catagory"
+  ],
+  "referenceListDetails": {
+    "catagory": {
+      "title": "catagory",
+      "categories": [
+        {
+          "title": "sub catagory",
+          "description": "sub catagory discription this is",
+          "entries": [
+            {
+              "name": "pwm read",
+              "description": "this is pwm read",
+              "sections": [
+                {
+                  "header": "header 1",
+                  "description": "header 1 description"
+                },
+                {
+                  "header": "header 2",
+                  "description": "header 2 description"
+                }
+              ],
+              "examples": [
+                "print('ggyhfyh')"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
