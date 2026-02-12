@@ -1,1 +1,21 @@
-{}
+{
+  "referenceList": [
+    "fgf"
+  ],
+  "referenceListDetails": {
+    "fgf": {
+      "title": "fgf",
+      "categories": [
+        {
+          "title": "gffg",
+          "description": "fgdfgdf",
+          "language": "c",
+          "complexity": "Intermediate",
+          "deviceFeatures": [
+            "gfgd"
+          ]
+        }
+      ]
+    }
+  }
+}
