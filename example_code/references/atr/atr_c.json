@@ -1,6 +1,7 @@
 {
   "referenceList": [
-    "catagory"
+    "catagory",
+    "ddrrs"
   ],
   "referenceListDetails": {
     "catagory": {
@@ -26,6 +27,9 @@
           ]
         }
       ]
+    },
+    "ddrrs": {
+      "title": "ddrrs"
     }
   }
 }
