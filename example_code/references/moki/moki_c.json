@@ -1,1 +1,10 @@
-{}
+{
+  "referenceList": [
+    "fdf"
+  ],
+  "referenceListDetails": {
+    "fdf": {
+      "title": "fdf"
+    }
+  }
+}
