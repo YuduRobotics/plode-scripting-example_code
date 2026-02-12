@@ -1,1 +1,38 @@
-{}
+{
+  "referenceList": [
+    "tushar",
+    "tushar1"
+  ],
+  "referenceListDetails": {
+    "tushar": {
+      "title": "tushar"
+    },
+    "tushar1": {
+      "title": "tushar1",
+      "categories": [
+        {
+          "title": "tushar sub",
+          "description": "tushar sub description",
+          "entries": [
+            {
+              "name": "red"
+            },
+            {
+              "name": "output",
+              "sections": [
+                {
+                  "header": "h1",
+                  "description": "output1 description"
+                }
+              ],
+              "description": "out 1 description",
+              "examples": [
+                "fsgafkg"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
