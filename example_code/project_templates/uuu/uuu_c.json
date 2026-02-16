@@ -34,6 +34,15 @@
           "title": "project2",
           "complexity": "Beginner",
           "language": "c"
+        },
+        {
+          "title": "yy",
+          "description": "hlhlhl",
+          "language": "c",
+          "complexity": "Expert",
+          "deviceFeatures": [
+            "kkk"
+          ]
         }
       ]
     }
