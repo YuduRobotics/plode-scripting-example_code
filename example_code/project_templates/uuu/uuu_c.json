@@ -29,6 +29,11 @@
               "test.ino"
             ]
           }
+        },
+        {
+          "title": "project2",
+          "complexity": "Beginner",
+          "language": "c"
         }
       ]
     }
