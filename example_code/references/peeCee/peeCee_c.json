@@ -19,7 +19,10 @@
                   "description": "more description"
                 }
               ],
-              "examples": []
+              "examples": [
+                "give me some example code \n",
+                ""
+              ]
             }
           ]
         }
@@ -29,7 +32,21 @@
       "title": "ss",
       "categories": [
         {
-          "title": "ss sub 1"
+          "title": "ss sub 1",
+          "entries": [
+            {
+              "name": "!st",
+              "sections": [
+                {
+                  "header": "Hi",
+                  "description": "jj"
+                }
+              ],
+              "examples": [
+                "ok"
+              ]
+            }
+          ]
         },
         {
           "title": "ss sub2"
