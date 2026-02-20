@@ -1,7 +1,8 @@
 {
   "referenceList": [
     "ref1",
-    "ref2"
+    "ref2",
+    "ref3"
   ],
   "referenceListDetails": {
     "ref1": {
@@ -33,6 +34,9 @@
           "title": "ref 2 sub2"
         }
       ]
+    },
+    "ref3": {
+      "title": "ref3"
     }
   }
 }
