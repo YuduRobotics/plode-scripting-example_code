@@ -19,9 +19,7 @@
                   "description": "more description"
                 }
               ],
-              "examples": [
-                "print('tttt')"
-              ]
+              "examples": []
             }
           ]
         }
