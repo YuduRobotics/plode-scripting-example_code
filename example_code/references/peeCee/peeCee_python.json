@@ -1,8 +1,7 @@
 {
   "referenceList": [
     "functions",
-    "variables",
-    "p1_cee_e1"
+    "variables"
   ],
   "referenceListDetails": {
     "functions": {
@@ -485,24 +484,6 @@
               ],
               "examples": [
                 "int status = pinStatus;"
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    "p1_cee_e1": {
-      "title": "p1 cee e1",
-      "categories": [
-        {
-          "title": "analog",
-          "description": "hello dgshdgjshd",
-          "entries": [
-            {
-              "name": "one two threee bdfkjhsjh",
-              "description": "hello world!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",
-              "examples": [
-                "num1 = 1.5\r\nnum2 = 6.3\r\n# Add two numbers\r\nsum = num1 + num2\r\n# Display the sum\r\nprint('The sum of {0} and {1} is {2}'.format(num1, num2, sum))"
               ]
             }
           ]
