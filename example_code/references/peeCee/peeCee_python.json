@@ -471,10 +471,20 @@
                 {
                   "header": "my world program ",
                   "description": "from playcomputer import RgbEyes\n\neyes = RgbEyes()\neyes.set_pixels(num =1, red =255, blue =255, green =255)\neyes.update_pixels()"
+                },
+                {
+                  "header": "hello 1",
+                  "description": "from playcomputer import RgbEyes\n"
+                },
+                {
+                  "header": "hello3",
+                  "description": "from playcomputer import RgbEyes\n"
                 }
               ],
               "examples": [
-                "from playcomputer import RgbEyes\r\n\r\neyes = RgbEyes()\r\neyes.set_pixels(num =1, red =255, blue =255, green =255)\r\neyes.update_pixels()\r\nfrom playcomputer import RgbEyes\r\n\r\neyes = RgbEyes()\r\neyes.set_pixels(num =1, red =255, blue =255, green =255)\r\neyes.update_pixels()\r\n\r\n\r\nfrom playcomputer import RgbEyes\r\n\r\neyes = RgbEyes()\r\neyes.set_pixels(num =1, red =255, blue =255, green =255)\r\neyes.update_pixels()"
+                "from playcomputer import RgbEyes\r\n\r\neyes = RgbEyes()\r\neyes.set_pixels(num =1, red =255, blue =255, green =255)\r\neyes.update_pixels()\r\nfrom playcomputer import RgbEyes\r\n\r\neyes = RgbEyes()\r\neyes.set_pixels(num =1, red =255, blue =255, green =255)\r\neyes.update_pixels()\r\n\r\n\r\nfrom playcomputer import RgbEyes\r\n\r\neyes = RgbEyes()\r\neyes.set_pixels(num =1, red =255, blue =255, green =255)\r\neyes.update_pixels()",
+                "from playcomputer import RgbEyes\r\n\r\neyes = RgbEyes()\r\neyes.set_pixels(num =1, red =255, blue =255, green =255)\r\neyes.update_pixels()\r\nfrom playcomputer import RgbEyes",
+                ""
               ]
             },
             {
