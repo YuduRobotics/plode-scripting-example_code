@@ -1,5 +1,8 @@
 {
-  "referenceList": ["functions", "variables"],
+  "referenceList": [
+    "functions",
+    "variables"
+  ],
   "referenceListDetails": {
     "functions": {
       "title": "Functions",
@@ -9,7 +12,7 @@
           "entries": [
             {
               "name": "GPIO_read",
-              "description": "Reads the digital input value (HIGH or LOW) from a specified GPIO pin using MicroPython.",
+              "description": "Reads the digital input value (HIGH or LOW) from a specified GPIO pin usin.",
               "sections": [
                 {
                   "header": "Syntax",
@@ -49,7 +52,8 @@
                 "from playcomputer import PORT_A1, Pin\nfrom time import sleep\n\nport = Pin(PORT_A1, Pin.OUT)\n\nwhile True:\n    port.value(1)  # Turn on\n    sleep(1)\n    port.value(0)  # Turn off\n    sleep(1)"
               ]
             }
-          ]
+          ],
+          "description": "Function"
         },
         {
           "title": "Analog I/O",
@@ -98,7 +102,6 @@
             }
           ]
         },
-
         {
           "title": "Internal Inputs",
           "entries": [
@@ -123,7 +126,6 @@
                 "from playcomputer import *\nfrom time import sleep\n\ntemp = ADC(Pin(TEMP_PIN))\ntemp.atten(ADC.ATTN_11DB)\n\nwhile True:\n    t = temp.read()\n    print(t)\n    sleep(1)"
               ]
             },
-
             {
               "name": "readMic",
               "description": "Reads the sound intensity value from the built-in microphone on the board. The microphone is onboard and connected to a fixed pin, so no additional wiring is required.",
@@ -208,7 +210,6 @@
                 "from playcomputer import Apds\nfrom time import sleep\n\napds = Apds()\napds.enable_light_sensor()\n\nwhile True:\n    l = apds.read_light()\n    print(l)\n    sleep(1)"
               ]
             },
-
             {
               "name": "readProximity",
               "description": "Reads the distance or proximity value from the built-in proximity sensor. The sensor is onboard with fixed pins and requires no additional wiring.",
@@ -295,7 +296,6 @@
             }
           ]
         },
-
         {
           "title": "Internal Outputs",
           "entries": [
@@ -320,7 +320,6 @@
                 "from playcomputer import RgbEyes\n\neyes = RgbEyes()\neyes.set_pixels(num=1, red=255, green=255, blue=255)\neyes.update_pixels()"
               ]
             },
-
             {
               "name": "smileLED",
               "description": "Controls the four built-in smile LEDs on the board. Each LED can be turned on or off individually using the provided methods.",
@@ -342,7 +341,6 @@
                 "from playcomputer import SmileLed\nfrom time import sleep\n\nsmile = SmileLed()\n\nwhile True:\n    smile.on(1)\n    smile.on(2)\n    smile.on(3)\n    smile.on(4)\n    sleep(1)\n\n    smile.off(1)\n    smile.off(2)\n    smile.off(3)\n    smile.off(4)\n    sleep(1)"
               ]
             },
-
             {
               "name": "buzzerTone",
               "description": "Controls the built-in buzzer on the board. You can stop, and set the frequency of the buzzer.",
@@ -472,10 +470,18 @@
               "name": "pinStatus",
               "description": "Holds the current status of a digital pin.",
               "sections": [
-                { "header": "Type", "description": "int" },
-                { "header": "Range", "description": "0 (LOW) or 1 (HIGH)" }
+                {
+                  "header": "Type",
+                  "description": "int"
+                },
+                {
+                  "header": "Range",
+                  "description": "0 (LOW) or 1 (HIGH)"
+                }
               ],
-              "examples": ["int status = pinStatus;"]
+              "examples": [
+                "int status = pinStatus;"
+              ]
             }
           ]
         }
