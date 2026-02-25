@@ -24,7 +24,7 @@
                 },
                 {
                   "header": "Returns",
-                  "description": "Returns 1 if the pin is HIGH and 0 if the pin is LOW."
+                  "description": "Returns 1 if the pin is HIGH and 0 if the pin is "
                 }
               ],
               "examples": [
