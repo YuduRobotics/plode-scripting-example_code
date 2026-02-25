@@ -11,7 +11,20 @@
           "title": "gg project",
           "description": "gg project description",
           "language": "python",
-          "complexity": "Beginner"
+          "complexity": "Beginner",
+          "projectData": {
+            "projectName": "fddhtyj",
+            "fileInfo": {
+              "main.py": {
+                "filename": "main.py",
+                "language": "python",
+                "content": "from playcomputer import RgbEyes\n\neyes = RgbEyes()\neyes.set_pixels(num =1, red =255, blue =255, green =255)\neyes.update_pixels()"
+              }
+            },
+            "containFile": [
+              "main.py"
+            ]
+          }
         }
       ]
     },
