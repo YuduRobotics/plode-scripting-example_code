@@ -6,10 +6,17 @@
   ],
   "referenceListDetails": {
     "ref1": {
-      "title": "ref1",
+      "title": "ref1eeeeeeeee",
       "categories": [
         {
-          "title": "ref 1 sub 1"
+          "title": "ref 1 sub 1",
+          "language": "c",
+          "description": "dsasd",
+          "deviceFeatures": [
+            "cssssss"
+          ],
+          "imgLink": "https://raw.githubusercontent.com/YuduRobotics/plode-scripting-example_code/release/example_code/project_templates/peeCee/assets/Screenshot 2026-02-17 174250.png",
+          "complexity": "Intermediate"
         },
         {
           "title": "ref1 project2",
