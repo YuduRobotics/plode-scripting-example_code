@@ -10,7 +10,8 @@
         {
           "title": "gg project",
           "description": "gg project description",
-          "language": "python"
+          "language": "python",
+          "complexity": "Beginner"
         }
       ]
     },
