@@ -16,7 +16,7 @@
               "sections": [
                 {
                   "header": "Syntax",
-                  "description": "pin = Pin(pin_name, Pin.IN)\npin_value = pin.value()"
+                  "description": "pin = Pin(pin_name, Pin.IN)\npin_value ="
                 },
                 {
                   "header": "Parameters",
