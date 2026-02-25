@@ -28,7 +28,8 @@
                 }
               ],
               "examples": [
-                "from playcomputer import *\nfrom machine import Pin\nfrom time import sleep\n\nA1 = Pin(PORT_A1, Pin.IN)\n\nwhile True:\n    A1_val = A1.value()\n    sleep(1)\n    print(A1_val)"
+                "from playcomputer import *\nfrom machine import Pin\nfrom time import sleep\n\nA1 = Pin(PORT_A1, Pin.IN)\n\nwhile True:\n    A1_val = A1.value()\n    sleep(1)\n    print(A1_val)",
+                ""
               ]
             },
             {
