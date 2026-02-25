@@ -1,55 +1,32 @@
 {
   "referenceList": [
-    "gg",
-    "ss"
+    "c_progm"
   ],
   "referenceListDetails": {
-    "gg": {
-      "title": "gg",
+    "c_progm": {
+      "title": "c progm",
       "categories": [
         {
-          "title": "sub gg",
+          "title": "sample program",
           "entries": [
             {
-              "name": "redgg",
-              "description": "this is red gg description",
+              "name": "anaolog1",
+              "description": "hello world",
               "sections": [
                 {
-                  "header": "hader 1",
-                  "description": "more description"
+                  "header": "6yyt",
+                  "description": "gfddddddddddddd"
+                },
+                {
+                  "header": "fggggget",
+                  "description": "dfjhkgggggggggggggggggggggggghttttttttttttttttthtry"
                 }
               ],
               "examples": [
-                "give me some example code \n",
-                ""
+                "eyes = RgbEyes()\r\neyes.set_pixels(num =1, red =255, blue =255, green =255)\r\neyes.update_pixels()"
               ]
             }
           ]
-        }
-      ]
-    },
-    "ss": {
-      "title": "ss",
-      "categories": [
-        {
-          "title": "ss sub 1",
-          "entries": [
-            {
-              "name": "!st",
-              "sections": [
-                {
-                  "header": "Hi",
-                  "description": "jj"
-                }
-              ],
-              "examples": [
-                "ok"
-              ]
-            }
-          ]
-        },
-        {
-          "title": "ss sub2"
         }
       ]
     }
