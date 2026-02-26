@@ -1,4 +1,26 @@
 {
-  "referenceList": [],
-  "referenceListDetails": {}
+  "referenceList": [
+    "begineer",
+    "Intermediate",
+    "Advanced"
+  ],
+  "referenceListDetails": {
+    "begineer": {
+      "title": "Begineer",
+      "categories": [
+        {
+          "title": "hello world"
+        },
+        {
+          "title": "hello python"
+        }
+      ]
+    },
+    "Intermediate": {
+      "title": "Intermediate"
+    },
+    "Advanced": {
+      "title": "Advanced"
+    }
+  }
 }
