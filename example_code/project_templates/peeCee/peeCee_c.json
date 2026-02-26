@@ -12,7 +12,13 @@
           "title": "hello world"
         },
         {
-          "title": "hello python"
+          "title": "hello python",
+          "description": "gggggggggggggggggggggggggggggggggggggggggggggggggggggggg",
+          "language": "c",
+          "complexity": "Intermediate",
+          "deviceFeatures": [
+            "yyyyyyyyr"
+          ]
         }
       ]
     },
