@@ -9,7 +9,21 @@
       "title": "Begineer",
       "categories": [
         {
-          "title": "hello world"
+          "title": "hello world",
+          "language": "c",
+          "projectData": {
+            "projectName": "edd",
+            "fileInfo": {
+              "edd.ino": {
+                "filename": "edd.ino",
+                "language": "c",
+                "content": "\nvoid setup() {\n   pinMode(1, OUTPUT);\n}\n\nvoid loop() {\n  digitalWrite(1, HIGH);\n  delay(1000); \n  digitalWrite(1, LOW);\n  delay(1000);\n}\n"
+              }
+            },
+            "containFile": [
+              "edd.ino"
+            ]
+          }
         },
         {
           "title": "hello python",
