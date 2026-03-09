@@ -1,30 +1,325 @@
 {
-  "referenceList": [
-    "c_progm"
-  ],
+  "referenceList": ["functions", "variables"],
   "referenceListDetails": {
-    "c_progm": {
-      "title": "c progm",
+    "functions": {
+      "title": "Functions",
       "categories": [
         {
-          "title": "sample program",
+          "title": "Digital I/O",
           "entries": [
             {
-              "name": "anaolog1",
-              "description": "hello world",
+              "name": "GPIO_read",
+              "description": "Reads the digital input value (HIGH or LOW) from a specified GPIO pin using digitalRead().",
               "sections": [
                 {
-                  "header": "6yyt",
-                  "description": "gfddddddddddddd"
+                  "header": "Syntax",
+                  "description": "pinMode(port, INPUT_PULLUP);\nvalue = digitalRead(port);\nSerial.println(value);"
                 },
                 {
-                  "header": "fggggget",
-                  "description": "dfjhkgggggggggggggggggggggggghttttttttttttttttthtry"
+                  "header": "Parameters",
+                  "description": "port: The GPIO pin number connected to the digital input device.\nINPUT_PULLUP: Configures the pin as an input with an internal pull-up resistor."
+                },
+                {
+                  "header": "Returns",
+                  "description": "Returns HIGH (1) if the pin is HIGH and LOW (0) if the pin is LOW."
                 }
               ],
               "examples": [
-                "eyes = RgbEyes()\r\neyes.set_pixels(num =1, red =255, blue =255, green =255)\r\neyes.update_pixels()"
+                "\n\nvoid setup() {\n  Serial.begin(115200);\n  pinMode(1, INPUT_PULLUP);\n  pinMode(2, INPUT_PULLUP);\n}\n\nvoid loop() {\n  int swA1State = digitalRead(1);\n  int swA2State = digitalRead(2);\n\n  Serial.print(\"A1 SW: \");\n  Serial.println(swA1State);\n\n  Serial.print(\"A2 Sw: \");\n  Serial.println(swA2State);\n\n  delay(500);\n}"
               ]
+            },
+            {
+              "name": "digitalOutput",
+              "description": "Controls external components such as LEDs, Laser, or other devices using a digital output signal. The pin can be set HIGH to turn the component ON or LOW to turn it OFF.",
+              "sections": [
+                {
+                  "header": "Syntax",
+                  "description": "In the setup() function configure the port as output:\npinMode(port, OUTPUT);\n\nIn the loop() function control the device state:\ndigitalWrite(port, HIGH);  // Turn device ON\ndigitalWrite(port, LOW);   // Turn device OFF"
+                },
+                {
+                  "header": "Parameters",
+                  "description": "port: The external GPIO port where the device is connected. Use the port number according to the hardware documentation.\n\nOUTPUT: Configures the selected port as an output pin.\n\nHIGH: Sets the port voltage HIGH and turns the connected device ON.\n\nLOW: Sets the port voltage LOW and turns the connected device OFF."
+                },
+                {
+                  "header": "Returns",
+                  "description": "These functions do not return any value. They only control the digital state of the selected port."
+                }
+              ],
+              "examples": [
+                "void setup() {\n  pinMode(1, OUTPUT);\n}\n\nvoid loop() {\n  digitalWrite(1, HIGH);\n  delay(1000);\n  digitalWrite(1, LOW);\n  delay(1000);\n}"
+              ]
+            }
+          ],
+          "description": "Function"
+        },
+        {
+          "title": "Analog I/O",
+          "entries": [
+            {
+              "name": "ADC_read",
+              "description": "Reads the analog input value from a specified GPIO pin using analogRead().",
+              "sections": [
+                {
+                  "header": "Syntax",
+                  "description": "value = analogRead(pin);\nSerial.println(value);"
+                },
+                {
+                  "header": "Parameters",
+                  "description": "pin: The analog input port number.\n\nExample analog input ports from the board:\nA1 : 1\nA2 : 2"
+                },
+                {
+                  "header": "Returns",
+                  "description": "Returns an integer representing the analog input value."
+                }
+              ],
+              "examples": [
+                "void setup() {\n  Serial.begin(115200);\n}\n\nvoid loop() {\n  int a1Value = analogRead(1);\n  int a2Value = analogRead(2);\n\n  Serial.print(\"A1: \");\n  Serial.println(a1Value);\n\n  Serial.print(\"A2: \");\n  Serial.println(a2Value);\n\n  delay(200);\n}"
+              ]
+            },
+            {
+              "name": "pwmOutput",
+              "description": "Controls external components using PWM signals on a specific pin using analogWrite().",
+              "sections": [
+                {
+                  "header": "Syntax",
+                  "description": "analogWrite(pin, value);"
+                },
+                {
+                  "header": "Parameters",
+                  "description": "pin: The PWM output port number.\nvalue: Integer (0–255) representing the PWM duty cycle.\n\nExample PWM output ports from the board:\nA1 : 1\nA2 : 2"
+                },
+                {
+                  "header": "Returns",
+                  "description": "No return value. The function sets the PWM duty cycle on the specified pin."
+                }
+              ],
+              "examples": [
+                "void setup() {\n}\n\nvoid loop() {\n  analogWrite(1, 128);\n  analogWrite(2, 128);\n}"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Internal Inputs",
+          "entries": [
+            {
+              "name": "readTouch",
+              "description": "Reads the capacitive touch values from the built-in touch pads on the board. The touch pads are already connected to fixed pins, so no external wiring is required.",
+              "sections": [
+                {
+                  "header": "Syntax",
+                  "description": "Read the capacitive value from a touch pad using:\n\nvalue = touchRead(port);"
+                },
+                {
+                  "header": "Parameters",
+                  "description": "port : The GPIO port connected to the touch pad.\n\nExample ports on this board:\n\t10, 11, 12, 13"
+                },
+                {
+                  "header": "Returns",
+                  "description": "Returns an integer value representing the raw capacitive reading of the touch pad. Lower values generally indicate that the pad is being touched."
+                }
+              ],
+              "examples": [
+                "void setup() {\n  Serial.begin(115200);\n  delay(1000);\n  Serial.println(\"ESP32 Touch Test\");\n}\n\nvoid loop() {\n  Serial.println(touchRead(13));\n  delay(1000);\n}"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Internal Outputs",
+          "entries": [
+            {
+              "name": "rgbLEDEye",
+              "description": "Controls the 12 built-in RGB eye LEDs using the NeoPixel LED driver. Each LED can be set to a specific RGB color value.",
+              "sections": [
+                {
+                  "header": "Library",
+                  "description": "1.    Library Name: Adafruit_NeoPixel\n\n2.    Include Syntax: #include <Adafruit_NeoPixel.h>\n\n3.    Initialization Syntax:\n\tAdafruit_NeoPixel strip(NUM_LEDS, LED_PIN, NEO_GRB + NEO_KHZ800);\n\n4.   Parameters:\n\tNUM_LEDS: Total number of RGB LEDs.\n\tLED_PIN: GPIO pin connected to the RGB LED data line.\n\tNEO_GRB: Color order used by the LEDs.\n\tNEO_KHZ800: Communication speed of the NeoPixel LEDs."
+                },
+                {
+                  "header": "Initialization",
+                  "description": "strip.begin();\nstrip.show();\nInitializes the NeoPixel LED strip and clears all LEDs."
+                },
+                {
+                  "header": "Syntax",
+                  "description": "strip.setPixelColor(led_number, strip.Color(red, green, blue));\nstrip.show();"
+                },
+                {
+                  "header": "Parameters",
+                  "description": "led_number: Index of the RGB LED to control.\nred: Red color intensity (0–255).\ngreen: Green color intensity (0–255).\nblue: Blue color intensity (0–255).\n\nExample eye LED ports:\nEye1 : 12\nEye2 : 13\nEye3 : 14\nEye4 : 15\nEye5 : 16\nEye6 : 17\nEye7 : 18\nEye8 : 19\nEye9 : 20\nEye10 : 21\nEye11 : 22\nEye12 : 23"
+                },
+                {
+                  "header": "Returns",
+                  "description": "No return value. The function updates the color of the selected RGB eye LED."
+                }
+              ],
+              "examples": [
+                "#include <Adafruit_NeoPixel.h>\n\n#define LED_PIN 36\n#define NUM_LEDS 12\n\nAdafruit_NeoPixel strip(NUM_LEDS, LED_PIN, NEO_GRB + NEO_KHZ800);\n\nvoid setup() {\n  strip.begin();\n  strip.show();\n}\n\nvoid loop() {\n  for (int i = 0; i < NUM_LEDS; i++) {\n    strip.clear();\n    strip.setPixelColor(i, strip.Color(255, 0, 0));\n    strip.show();\n    delay(200);\n  }\n}"
+              ]
+            },
+            {
+              "name": "smileLED",
+              "description": "Controls the four onboard Smile LEDs available on the board. Each LED is connected to a specific port and can be turned ON or OFF individually. The LEDs are arranged from left to right on ports 37, 41, 21, and 35.",
+              "sections": [
+                {
+                  "header": "Syntax",
+                  "description": "In the setup() function, configure the Smile LED port as an output using:\npinMode(port, OUTPUT);\n\nIn the loop() function, control the LED using:\ndigitalWrite(port, HIGH);  // Turn the LED ON\ndigitalWrite(port, LOW);   // Turn the LED OFF"
+                },
+                {
+                  "header": "Parameters",
+                  "description": "port: The GPIO port number where the Smile LED is connected. The Smile LEDs are connected to ports 37, 41, 21, and 35 (from left to right).\n\nOUTPUT: Configures the selected port as an output pin.\n\nHIGH: Turns the LED ON.\n\nLOW: Turns the LED OFF."
+                },
+                {
+                  "header": "Returns",
+                  "description": "No return value. The methods turn the specified Smile LED ON or OFF."
+                }
+              ],
+              "examples": [
+                "void setup(){\n    pinMode(37, OUTPUT);\n}\n\nvoid loop() {\n  digitalWrite(37, HIGH);\n   delay(1000);\n  digitalWrite(37, LOW);\n    delay(1000);\n}"
+              ]
+            },
+            {
+              "name": "buzzerTone",
+              "description": "Controls a buzzer connected to the board using a digital output pin. The buzzer produces sound by generating a square wave signal at a specific frequency.",
+              "sections": [
+                {
+                  "header": "Initialization",
+                  "description": "Define the buzzer port and tone configuration before starting the program:\n\n#define BUZZER_PIN 45\n#define BEEP_FREQUENCY 2000\n#define BEEP_DURATION 200\n#define INTERVAL 2000\n\nBUZZER_PIN: The GPIO port where the buzzer is connected. Use the correct port number according to the hardware documentation.\n\nBEEP_FREQUENCY: The tone frequency in Hertz (Hz).\n\nBEEP_DURATION: Duration of the beep sound in milliseconds.\n\nINTERVAL: Delay between two beep cycles in milliseconds."
+                },
+                {
+                  "header": "Syntax",
+                  "description": "In the setup() function configure the buzzer pin as an output:\n\npinMode(BUZZER_PIN, OUTPUT);\n\nIn the loop() function generate a square wave signal by toggling the pin HIGH and LOW to produce the buzzer tone."
+                },
+                {
+                  "header": "Parameters",
+                  "description": "BUZZER_PIN: The GPIO port connected to the buzzer.\n\nBEEP_FREQUENCY: The sound frequency in Hertz.\n\nBEEP_DURATION: Time the buzzer will play the tone.\n\nINTERVAL: Time delay between repeated beeps."
+                },
+
+                {
+                  "header": "Returns",
+                  "description": "These functions do not return any value. They only generate a sound signal through the buzzer."
+                }
+              ],
+              "examples": [
+                "#define BUZZER_PIN 45\n#define BEEP_FREQUENCY 2000\n#define BEEP_DURATION 200\n#define INTERVAL 2000\n\nvoid setup() {\n  pinMode(BUZZER_PIN, OUTPUT);\n}\n\nvoid loop() {\n  int period = 1000000 / BEEP_FREQUENCY;\n  int pulse = period / 2;\n\n  unsigned long startTime = millis();\n\n  while (millis() - startTime < BEEP_DURATION) {\n    digitalWrite(BUZZER_PIN, HIGH);\n    delayMicroseconds(pulse);\n    digitalWrite(BUZZER_PIN, LOW);\n    delayMicroseconds(pulse);\n  }\n\n  delay(INTERVAL);\n}"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Outputs",
+          "entries": [
+            {
+              "name": "externalRGB",
+              "description": "Controls external NeoPixel RGB LEDs connected to the board using the Adafruit NeoPixel library. Each LED's color can be controlled individually by setting red, green, and blue values.",
+              "sections": [
+                {
+                  "header": "Initialization",
+                  "description": "Define the port and number of LEDs before creating the NeoPixel object:\n\n#define LED_PIN 1\n#define NUM_LEDS 1\n\nLED_PIN: The GPIO port where the NeoPixel data pin is connected. Use the external port number according to the hardware documentation.\nNUM_LEDS: Total number of NeoPixel LEDs connected to the port."
+                },
+                {
+                  "header": "Library",
+                  "description": "This example uses the Adafruit NeoPixel library to control RGB LEDs.\n\n1.    Library Name: Adafruit_NeoPixel\n\n2.   Include the library at the beginning of the program:\n#include <Adafruit_NeoPixel.h>\n\n3.  Library Initialization Syntax:\nAdafruit_NeoPixel strip(number_of_leds, port, NEO_GRB + NEO_KHZ800);\n\n4.  Parameters:\nnumber_of_leds: Total number of NeoPixel LEDs connected.\nport: The GPIO pin where the NeoPixel data line is connected.\nNEO_GRB + NEO_KHZ800: Specifies the LED color order and communication speed used by most NeoPixel LEDs."
+                },
+                {
+                  "header": "Syntax",
+                  "description": "Initialize the NeoPixel strip in the setup() function:\nstrip.begin();\nstrip.show();\n\nSet the color of a specific LED in the loop() function:\nstrip.setPixelColor(index, strip.Color(R, G, B));\nstrip.show();"
+                },
+                {
+                  "header": "Parameters",
+                  "description": "index: The LED number to control (0 to number_of_leds - 1).\n\nR, G, B: Integer values (0–255) representing red, green, and blue color intensity.\n\nstrip.show(): Updates the LED strip and applies the color changes."
+                },
+                {
+                  "header": "Returns",
+                  "description": "These functions do not return any value. They only update the color of the connected NeoPixel LEDs."
+                }
+              ],
+              "examples": [
+                "#include <Adafruit_NeoPixel.h>\n\n#define LED_PIN 1\n#define NUM_LEDS 1\n\nAdafruit_NeoPixel strip(NUM_LEDS, LED_PIN, NEO_GRB + NEO_KHZ800);\n\nvoid setup() {\n  strip.begin();\n  strip.show();\n}\n\nvoid loop() {\n  strip.setPixelColor(0, strip.Color(255, 0, 0)); // Red\n  strip.show();\n  delay(1000);\n\n  strip.setPixelColor(0, strip.Color(0, 0, 255)); // Blue\n  strip.show();\n  delay(1000);\n}"
+              ]
+            },
+            {
+              "name": "oledDisplay",
+              "description": "Controls an external OLED display connected to the board using the I2C interface. You can display text at specific coordinates on the screen.",
+              "sections": [
+                {
+                  "header": "Library",
+                  "description": "This example uses the Adafruit GFX and Adafruit SSD1306 libraries to control the OLED display.\n\n1.  Library Names:\n\tWire\n\tAdafruit_GFX\n\tAdafruit_SSD1306\n\n2.   Include the libraries at the beginning of the program:\n\t#include <Wire.h>\n\t#include <Adafruit_GFX.h>\n\t#include <Adafruit_SSD1306.h>\n\n3.  sLibrary Initialization Syntax:\n\tAdafruit_SSD1306 display(width, height, &Wire, reset_pin);\n\n4.  Parameters:\n\twidth  : OLED display width in pixels (usually 128).\n\theight : OLED display height in pixels (usually 64).\n\t&Wire  : I2C communication interface.\n\treset_pin : Reset pin of the display (use -1 if not connected)."
+                },
+                {
+                  "header": "Initialization",
+                  "description": "Define display configuration and I2C communication pins before starting the program.\n\n#define SCREEN_WIDTH 128\n#define SCREEN_HEIGHT 64\n#define OLED_RESET -1\n#define SCREEN_ADDRESS 0x3C\n#define SDA_PIN 9\n#define SCL_PIN 8\n\nSCREEN_WIDTH and SCREEN_HEIGHT define the display resolution.\nSCREEN_ADDRESS is the I2C address of the OLED display.\nSDA_PIN and SCL_PIN define the I2C communication pins used to connect the display."
+                },
+                {
+                  "header": "Syntax",
+                  "description": "Initialize the I2C communication and OLED display inside setup():\n\nWire.begin(SDA_PIN, SCL_PIN);\ndisplay.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS);\n\ndisplay.clearDisplay();\ndisplay.setTextSize(size);\ndisplay.setTextColor(SSD1306_WHITE);\ndisplay.setCursor(x, y);\ndisplay.println(\"text\");\ndisplay.display();"
+                },
+                {
+                  "header": "Parameters",
+                  "description": "size : Text size multiplier.\n\nx : X coordinate of the text position (0–127).\n\ny : Y coordinate of the text position (0–63).\n\ntext : The message string to display on the OLED screen.\n\nSCREEN_ADDRESS : I2C address used to communicate with the display."
+                },
+                {
+                  "header": "Returns",
+                  "description": "These functions do not return any value. They update the OLED display with the specified text or graphics."
+                }
+              ],
+              "examples": [
+                "#include <Wire.h>\n#include <Adafruit_GFX.h>\n#include <Adafruit_SSD1306.h>\n\n#define SCREEN_WIDTH 128\n#define SCREEN_HEIGHT 64\n#define OLED_RESET -1\n#define SCREEN_ADDRESS 0x3C\n\n#define SDA_PIN 9\n#define SCL_PIN 8\n\nAdafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);\n\nvoid setup() {\n  Wire.begin(SDA_PIN, SCL_PIN);\n\n  if (!display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS)) {\n    Serial.println(\"SSD1306 allocation failed\");\n    while (1);\n  }\n\n  display.clearDisplay();\n  display.setTextSize(2);\n  display.setTextColor(SSD1306_WHITE);\n  display.setCursor(0, 0);\n  display.println(\"Hi World!\");\n  display.display();\n}\n\nvoid loop() {\n}\n"
+              ]
+            },
+            {
+              "name": "servoOutput",
+              "description": "Controls an external servo motor connected to the board using PWM signals. The servo motor rotates to a specific angle between 0° and 180° by generating the appropriate PWM signal on the connected port.",
+              "sections": [
+                {
+                  "header": "Library",
+                  "description": "This example uses the ESP32Servo library to control a servo motor.\n\n1.  Library Name:\n\tESP32Servo\n\n2.   Include the library at the beginning of the program:\n\t#include <ESP32Servo.h>\n\n3.   Library Initialization Syntax:\n\tServo servoObject;\n\n4.  Attach the servo to a pin:\n\tservoObject.attach(port, min_pulse, max_pulse);\n\n5.   Parameters:\n\tport : The GPIO port where the servo signal wire is connected.\n\tmin_pulse : Minimum pulse width in microseconds (typically around 500).\n\tmax_pulse : Maximum pulse width in microseconds (typically around 2400)."
+                },
+                {
+                  "header": "Initialization",
+                  "description": "Define the servo port before starting the program:\n\n#define SERVO_PIN 1\n\nSERVO_PIN: The GPIO port where the servo motor control wire is connected. Use the correct external port number according to the hardware documentation."
+                },
+                {
+                  "header": "Syntax",
+                  "description": "Create a servo object and attach it to a pin in the setup() function:\n\nServo myServo;\nmyServo.attach(SERVO_PIN, 500, 2400);\n\nControl the servo angle inside the loop() function using:\n\nmyServo.write(angle);"
+                },
+                {
+                  "header": "Parameters",
+                  "description": "angle : The position to rotate the servo motor, specified in degrees (0–180).\n\nSERVO_PIN : The GPIO port connected to the servo signal wire."
+                },
+                {
+                  "header": "Returns",
+                  "description": "These functions do not return any value. They generate a PWM signal that moves the connected servo motor to the specified angle."
+                }
+              ],
+              "examples": [
+                "#include <ESP32Servo.h>\n\nServo myServo;\n\n#define SERVO_PIN 1\n\nvoid setup() {\n  myServo.attach(SERVO_PIN, 500, 2400);\n}\n\nvoid loop() {\n  myServo.write(90);  // Rotate to 90 degrees\n  delay(1000);\n\n  myServo.write(0);   // Rotate back to 0 degrees\n  delay(1000);\n}"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "variables": {
+      "title": "Variables",
+      "categories": [
+        {
+          "title": "Digital I/O py",
+          "entries": [
+            {
+              "name": "pinStatus",
+              "description": "Holds the current status of a digital pin.",
+              "sections": [
+                {
+                  "header": "Type",
+                  "description": "int"
+                },
+                {
+                  "header": "Range",
+                  "description": "0 (LOW) or 1 (HIGH)"
+                }
+              ],
+              "examples": ["int status = pinStatus;"]
             }
           ]
         }

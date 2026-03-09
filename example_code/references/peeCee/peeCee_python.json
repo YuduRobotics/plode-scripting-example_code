@@ -1,8 +1,5 @@
 {
-  "referenceList": [
-    "functions",
-    "variables"
-  ],
+  "referenceList": ["functions", "variables"],
   "referenceListDetails": {
     "functions": {
       "title": "Functions",
@@ -51,12 +48,8 @@
               "examples": [
                 "from playcomputer import PORT_A1, Pin\nfrom time import sleep\n\nport = Pin(PORT_A1, Pin.OUT)\n\nwhile True:\n    port.value(1)  # Turn on\n    sleep(1)\n    port.value(0)  # Turn off\n    sleep(1)"
               ]
-            },
-            {
-              "name": "hellopython"
             }
-          ],
-          "description": "Function"
+          ]
         },
         {
           "title": "Analog I/O",
@@ -460,36 +453,6 @@
               ]
             }
           ]
-        },
-        {
-          "title": "hello world",
-          "entries": [
-            {
-              "name": "python",
-              "description": "my computer python code",
-              "sections": [
-                {
-                  "header": "my world program ",
-                  "description": "from playcomputer import RgbEyes\n\neyes = RgbEyes()\neyes.set_pixels(num =1, red =255, blue =255, green =255)\neyes.update_pixels()"
-                },
-                {
-                  "header": "hello 1",
-                  "description": "from playcomputer import RgbEyes\n"
-                },
-                {
-                  "header": "hello3",
-                  "description": "from playcomputer import RgbEyes\n"
-                }
-              ],
-              "examples": [
-                "from playcomputer import RgbEyes\r\n\r\neyes = RgbEyes()\r\neyes.set_pixels(num =1, red =255, blue =255, green =255)\r\neyes.update_pixels()\r\nfrom playcomputer import RgbEyes\r\n\r\neyes = RgbEyes()\r\neyes.set_pixels(num =1, red =255, blue =255, green =255)\r\neyes.update_pixels()\r\n\r\n\r\nfrom playcomputer import RgbEyes\r\n\r\neyes = RgbEyes()\r\neyes.set_pixels(num =1, red =255, blue =255, green =255)\r\neyes.update_pixels()",
-                "from playcomputer import RgbEyes\r\n\r\neyes = RgbEyes()\r\neyes.set_pixels(num =1, red =255, blue =255, green =255)\r\neyes.update_pixels()\r\nfrom playcomputer import RgbEyes"
-              ]
-            },
-            {
-              "name": "c coding"
-            }
-          ]
         }
       ]
     },
@@ -512,9 +475,7 @@
                   "description": "0 (LOW) or 1 (HIGH)"
                 }
               ],
-              "examples": [
-                "int status = pinStatus;"
-              ]
+              "examples": ["int status = pinStatus;"]
             }
           ]
         }
