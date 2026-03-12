@@ -172,7 +172,7 @@
                 }
               ],
               "examples": [
-                "#include <Arduino.h>\n#include \"FS.h\"\n#include \"SD_MMC.h\"\n#include \"AudioGeneratorMP3.h\"\n#include \"AudioFileSourceFS.h\"\n#include \"AudioOutputI2S.h\"\n\n#define I2S_BCLK 41\n#define I2S_DOUT 42\n#define I2S_LRCLK 43\n\nAudioGeneratorMP3 *mp3;\nAudioFileSourceFS *file;\nAudioOutputI2S *out;\n\nvoid setup() {\n  Serial.begin(115200);\n\n  SD_MMC.setPins(39, 38, 40);\n  if (!SD_MMC.begin(\"/sdcard\", true)) {\n    Serial.println(\"SD mount failed\");\n    return;\n  }\n\n  out = new AudioOutputI2S();\n  out->SetPinout(I2S_BCLK, I2S_LRCLK, I2S_DOUT);\n  out->SetGain(1.0);\n\n  file = new AudioFileSourceFS(SD_MMC, \"/new.mp3\");\n  mp3 = new AudioGeneratorMP3();\n\n  mp3->begin(file, out);\n}\n\nvoid loop() {\n  if (mp3->isRunning()) {\n    mp3->loop();\n  }\n}\n"
+                "#include <Arduino.h>\n#include \"FS.h\"\n#include \"SD_MMC.h\"\n#include \"AudioGeneratorMP3.h\"\n#include \"AudioFileSourceFS.h\"\n#include \"AudioOutputI2S.h\"\n\nAudioGeneratorMP3 *mp3;\nAudioFileSourceFS *file;\nAudioOutputI2S *out;\n\nvoid setup() {\n  Serial.begin(115200);\n\n  SD_MMC.setPins(39, 38, 40);\n  if (!SD_MMC.begin(\"/sdcard\", true)) {\n    Serial.println(\"SD mount failed\");\n    return;\n  }\n\n  out = new AudioOutputI2S();\n  out->SetPinout(41, 43, 42);\n  out->SetGain(1.0);\n\n  //give the file path for play the m3 file\n  file = new AudioFileSourceFS(SD_MMC, \"/new.mp3\");\n  mp3 = new AudioGeneratorMP3();\n\n  mp3->begin(file, out);\n}\n\nvoid loop() {\n  if (mp3->isRunning()) {\n    mp3->loop();\n  }\n}\n\n"
               ]
             }
           ]
