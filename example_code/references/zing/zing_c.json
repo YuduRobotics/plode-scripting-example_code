@@ -1,5 +1,8 @@
 {
-  "referenceList": ["functions", "variables"],
+  "referenceList": [
+    "functions",
+    "variables"
+  ],
   "referenceListDetails": {
     "functions": {
       "title": "Functions",
@@ -313,19 +316,19 @@
                 },
                 {
                   "header": "Syntax",
-                  "description": "int angle = DsServoReadPosition(id);"
+                  "description": "int postion = DsServoReadPosition(id);"
                 },
                 {
                   "header": "Parameters",
-                  "description": "id: Servo ID number to read the current position from."
+                  "description": "id: Servo ID number to read the current position of the serial servo."
                 },
                 {
                   "header": "Returns",
-                  "description": "Returns the servo angle in degrees (0–180). Returns -1 if the position cannot be read."
+                  "description": "Returns the servo postion value."
                 }
               ],
               "examples": [
-                "#include <Arduino.h>\n\nuint8_t DsCheckSum(uint8_t buf[], uint8_t len) {\n  uint16_t temp = 0;\n  for (uint8_t i = 2; i < len - 1; i++) temp += buf[i];\n  temp = temp & 0xFF;\n  temp = ~temp;\n  return (uint8_t)temp;\n}\n\nvoid serialServo_config() {\n  Serial1.begin(115200, SERIAL_8N1, 1, 2);\n  delay(50);\n}\n\nint DsServoReadPosition(uint8_t id) {\n  uint8_t buf[8] = {0xFF, 0xFF, id, 0x04, 0x02, 0x38, 0x02, 0x00};\n  buf[7] = DsCheckSum(buf, sizeof(buf));\n  Serial1.write(buf, sizeof(buf));\n  delay(20);\n\n  if (Serial1.available() >= 8) {\n    uint8_t resp[16];\n    int len = Serial1.readBytes(resp, sizeof(resp));\n\n    if (len >= 8) {\n      int rawPos = (resp[len - 3] << 8) | resp[len - 2];\n      int degrees = map(rawPos, 0, 1000, 0, 180);\n      return degrees;\n    }\n  }\n  return -1;\n}\n\nvoid setup() {\n  Serial.begin(115200);\n  serialServo_config();\n}\n\nvoid loop() {\n  int pos = DsServoReadPosition(4);\n  if (pos >= 0) {\n    Serial.println(\"Servo Angle: \" + String(pos) + \" deg\");\n  } else {\n    Serial.println(\"Failed to read position\");\n  }\n  delay(200);\n}\n"
+                "uint8_t DsCheckSum(uint8_t buf[], uint8_t len) {\n  uint16_t temp = 0;\n  for (uint8_t i = 2; i < len - 1; i++) temp += buf[i];\n  temp = temp & 0xFF;\n  temp = ~temp;\n  return (uint8_t)temp;\n}\n\nvoid serialServo_config() {\n  Serial1.begin(115200, SERIAL_8N1, 1, 2);\n  delay(50);\n}\n\n// === Read Servo Position ===\nint DsServoReadPosition(uint8_t id) {\n  uint8_t buf[8] = {0xFF, 0xFF, id, 0x04, 0x02, 0x38, 0x02, 0x00};\n  buf[7] = DsCheckSum(buf, sizeof(buf));\n  Serial1.write(buf, sizeof(buf));\n  delay(20);\n\n  if (Serial1.available() >= 8) {\n    uint8_t resp[16];\n    int len = Serial1.readBytes(resp, sizeof(resp));\n\n    if (len >= 8) {\n      int rawPos = (resp[len - 3] << 8) | resp[len - 2];\n      int degrees = map(rawPos, 0, 1000, 0, 180);\n      return degrees;\n    }\n  }\n  return -1;\n}\n\n// ================= MAIN =================\nvoid setup() {\n  Serial.begin(115200);\n  serialServo_config();\n  Serial.println(\"Servo ID=4 position monitor...\");}\n\nvoid loop() {\n  int pos = DsServoReadPosition(4);\n  if (pos >= 0) {\n   Serial.println(\"Servo Angle3: \" + String(pos));\n  }\nelse {\n    Serial.println(\"Failed to read position\");\n }\n  delay(200);\n}\n"
               ]
             }
           ]
