@@ -49,8 +49,7 @@
                 "void setup() {\n  pinMode(1, OUTPUT);\n}\n\nvoid loop() {\n  digitalWrite(1, HIGH);\n  delay(1000);\n  digitalWrite(1, LOW);\n  delay(1000);\n}"
               ]
             }
-          ],
-          "description": "Function"
+          ]
         },
         {
           "title": "Analog I/O",
@@ -78,15 +77,23 @@
             },
             {
               "name": "pwmOutput",
-              "description": "Controls external components using PWM signals on a specific pin using analogWrite().",
+              "description": "Controls external components using PWM signals on a specific pin.",
               "sections": [
                 {
+                  "header": "Library",
+                  "description": "Library Name: ESP32 LEDC PWM (built-in)\nInclude Syntax: No external library include required.\n\nPWM Function Syntax:\nledcAttach(pin, frequency, resolution);\nledcWrite(pin, duty);\n\nParameters:\npin: GPIO pin used for PWM output.\nfrequency: PWM signal frequency in Hz.\nresolution: PWM resolution in bits (for example 8-bit gives range 0–255).\nduty: PWM duty cycle value."
+                },
+                {
+                  "header": "Initialization",
+                  "description": "ledcAttach(pin, frequency, resolution);\nInitializes the PWM output on the specified pin."
+                },
+                {
                   "header": "Syntax",
-                  "description": "analogWrite(pin, value);"
+                  "description": "ledcWrite(pin, duty);"
                 },
                 {
                   "header": "Parameters",
-                  "description": "pin: The PWM output port number.\nvalue: Integer (0–255) representing the PWM duty cycle.\n\nExample PWM output ports from the board:\nA1 : 1\nA2 : 2"
+                  "description": "pin: The PWM output port number.\nduty: Integer representing the PWM duty cycle value.\n\nExample PWM output ports from the board:\nA1 : 1\nA2 : 2"
                 },
                 {
                   "header": "Returns",
@@ -94,7 +101,7 @@
                 }
               ],
               "examples": [
-                "void setup() {\n}\n\nvoid loop() {\n  analogWrite(1, 128);\n  analogWrite(2, 128);\n}"
+                "const int pwmFreq = 5000;\nconst int pwmResolution = 8;\n\nvoid setup() {\n  ledcAttach(1, pwmFreq, pwmResolution);\n}\n\nvoid loop() {\n  ledcWrite(1, 255);\n  delay(1000);\n  ledcWrite(1, 128);\n}"
               ]
             }
           ]
