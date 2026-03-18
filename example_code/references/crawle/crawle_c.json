@@ -1,1 +1,340 @@
-{}
+{
+  "referenceList": ["functions", "variables"],
+  "referenceListDetails": {
+    "functions": {
+      "title": "Functions",
+      "categories": [
+        {
+          "title": "Digital I/O",
+          "entries": [
+            {
+              "name": "GPIO_read",
+              "description": "Reads the digital input value (HIGH or LOW) from a specified GPIO pin using digitalRead().",
+              "sections": [
+                {
+                  "header": "Syntax",
+                  "description": "pinMode(port, INPUT_PULLUP);\nvalue = digitalRead(port);\nSerial.println(value);"
+                },
+                {
+                  "header": "Parameters",
+                  "description": "port: The GPIO pin number connected to the digital input device.\nINPUT_PULLUP: Configures the pin as an input with an internal pull-up resistor."
+                },
+                {
+                  "header": "Returns",
+                  "description": "Returns HIGH (1) if the pin is HIGH and LOW (0) if the pin is LOW."
+                }
+              ],
+              "examples": [
+                "\n\nvoid setup() {\n  Serial.begin(115200);\n  pinMode(1, INPUT_PULLUP);\n  pinMode(2, INPUT_PULLUP);\n}\n\nvoid loop() {\n  int swA1State = digitalRead(1);\n  int swA2State = digitalRead(2);\n\n  Serial.print(\"A1 SW: \");\n  Serial.println(swA1State);\n\n  Serial.print(\"A2 Sw: \");\n  Serial.println(swA2State);\n\n  delay(500);\n}"
+              ]
+            },
+            {
+              "name": "digitalOutput",
+              "description": "Controls external components such as LEDs, Laser, or other devices using a digital output signal. The pin can be set HIGH to turn the component ON or LOW to turn it OFF.",
+              "sections": [
+                {
+                  "header": "Syntax",
+                  "description": "In the setup() function configure the port as output:\npinMode(port, OUTPUT);\n\nIn the loop() function control the device state:\ndigitalWrite(port, HIGH);  // Turn device ON\ndigitalWrite(port, LOW);   // Turn device OFF"
+                },
+                {
+                  "header": "Parameters",
+                  "description": "port: The external GPIO port where the device is connected. Use the port number according to the hardware documentation.\n\nOUTPUT: Configures the selected port as an output pin.\n\nHIGH: Sets the port voltage HIGH and turns the connected device ON.\n\nLOW: Sets the port voltage LOW and turns the connected device OFF."
+                },
+                {
+                  "header": "Returns",
+                  "description": "These functions do not return any value. They only control the digital state of the selected port."
+                }
+              ],
+              "examples": [
+                "void setup() {\n  pinMode(1, OUTPUT);\n}\n\nvoid loop() {\n  digitalWrite(1, HIGH);\n  delay(1000);\n  digitalWrite(1, LOW);\n  delay(1000);\n}"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Analog I/O",
+          "entries": [
+            {
+              "name": "ADC_read",
+              "description": "Reads the analog input value from a specified GPIO pin using analogRead().",
+              "sections": [
+                {
+                  "header": "Syntax",
+                  "description": "value = analogRead(pin);\nSerial.println(value);"
+                },
+                {
+                  "header": "Parameters",
+                  "description": "pin: The analog input port number.\n\nExample analog input ports from the board:\nA1 : 1\nA2 : 2"
+                },
+                {
+                  "header": "Returns",
+                  "description": "Returns an integer representing the analog input value."
+                }
+              ],
+              "examples": [
+                "void setup() {\n  Serial.begin(115200);\n}\n\nvoid loop() {\n  int a1Value = analogRead(1);\n  int a2Value = analogRead(2);\n\n  Serial.print(\"A1: \");\n  Serial.println(a1Value);\n\n  Serial.print(\"A2: \");\n  Serial.println(a2Value);\n\n  delay(200);\n}"
+              ]
+            },
+            {
+              "name": "pwmOutput",
+              "description": "Controls external components using PWM signals on a specific pin.",
+              "sections": [
+                {
+                  "header": "Library",
+                  "description": "Library Name: ESP32 LEDC PWM (built-in)\nInclude Syntax: No external library include required.\n\nPWM Function Syntax:\nledcAttach(pin, frequency, resolution);\nledcWrite(pin, duty);\n\nParameters:\npin: GPIO pin used for PWM output.\nfrequency: PWM signal frequency in Hz.\nresolution: PWM resolution in bits (for example 8-bit gives range 0–255).\nduty: PWM duty cycle value."
+                },
+                {
+                  "header": "Initialization",
+                  "description": "ledcAttach(pin, frequency, resolution);\nInitializes the PWM output on the specified pin."
+                },
+                {
+                  "header": "Syntax",
+                  "description": "ledcWrite(pin, duty);"
+                },
+                {
+                  "header": "Parameters",
+                  "description": "pin: The PWM output port number.\nduty: Integer representing the PWM duty cycle value.\n\nExample PWM output ports from the board:\nA1 : 1\nA2 : 2"
+                },
+                {
+                  "header": "Returns",
+                  "description": "No return value. The function sets the PWM duty cycle on the specified pin."
+                }
+              ],
+              "examples": [
+                "const int pwmFreq = 5000;\nconst int pwmResolution = 8;\n\nvoid setup() {\n  ledcAttach(1, pwmFreq, pwmResolution);\n}\n\nvoid loop() {\n  ledcWrite(1, 255);\n  delay(1000);\n  ledcWrite(1, 128);\n}"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Internal Inputs",
+          "entries": [
+            {
+              "name": "imuAccelGyroRead",
+              "description": "Reads accelerometer, gyroscope, and temperature data from the QMI8658A IMU sensor using I2C communication.",
+              "sections": [
+                {
+                  "header": "Library",
+                  "description": "Library Name: QMI8658A\n\nInclude Syntax:\n#include <QMI8658A.h>"
+                },
+                {
+                  "header": "Initialization",
+                  "description": "imu.begin(&Wire, SDA_PIN, SCL_PIN);\nInitializes the QMI8658A IMU sensor using I2C communication."
+                },
+                {
+                  "header": "Syntax",
+                  "description": "imu.readAll(ax, ay, az, gx, gy, gz, temp);"
+                },
+                {
+                  "header": "Parameters",
+                  "description": "ax, ay, az: Accelerometer values in g.\ngx, gy, gz: Gyroscope values in degrees per second (dps).\ntemp: Temperature value from the IMU sensor."
+                },
+                {
+                  "header": "Returns",
+                  "description": "Returns true if sensor data is successfully read."
+                }
+              ],
+              "examples": [
+                "#include <Wire.h>\n#include <QMI8658A.h>\n\n#define IMU_SDA 48\n#define IMU_SCL 47\n#define IMU_ADDR 0x6A   // try 0x6B if not detected\n\nQMI8658A imu;\n\nvoid setup() {\n  Serial.begin(115200);\n  delay(500);\n\n  Serial.println(\"Initializing IMU...\");\n\n  Wire.begin(IMU_SDA, IMU_SCL);\n  imu.begin(IMU_ADDR);\n\n  Serial.println(\"QMI8658A Ready!\");\n}\n\nvoid loop() {\n  float ax = imu.getAccX();\n  float ay = imu.getAccY();\n  float az = imu.getAccZ();\n\n  float gx = imu.getGyroX();\n  float gy = imu.getGyroY();\n  float gz = imu.getGyroZ();\n\n  Serial.print(\"accX: \"); Serial.println(ax);\n  Serial.print(\"accY: \"); Serial.println(ay);\n  Serial.print(\"accZ: \"); Serial.println(az);\n\n  Serial.print(\"gyrX: \"); Serial.println(gx);\n  Serial.print(\"gyrY: \"); Serial.println(gy);\n  Serial.print(\"gyrZ: \"); Serial.println(gz);\n\n  delay(300);\n}\n"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Internal Outputs",
+          "entries": [
+            {
+              "name": "sdAudioPlay",
+              "description": "Plays an MP3 or WAV audio file from the SD card using I2S audio output.",
+              "sections": [
+                {
+                  "header": "Library",
+                  "description": "1.\tLibraries Name:\n\tESP8266Audio\n\n2.\tInclude the library at the beginning of the program:\n\t#include <Arduino.h>\n\t#include \"FS.h\"\n\t#include \"SD_MMC.h\"\n\t#include \"AudioGeneratorMP3.h\"\n\t#include \"AudioGeneratorWAV.h\"\n\t#include \"AudioFileSourceFS.h\"\n\t#include \"AudioFileSourceID3.h\"\n\t#include \"AudioOutputI2S.h\""
+                },
+                {
+                  "header": "Initialization",
+                  "description": "SD_MMC.begin(\"/sdcard\", true);\nout->SetPinout(BCLK, LRCLK, DOUT);\nInitializes the SD card and I2S audio output."
+                },
+                {
+                  "header": "Syntax",
+                  "description": "AudioGeneratorMP3 mp3;\nmp3.begin(fileSource, audioOutput);"
+                },
+                {
+                  "header": "Parameters",
+                  "description": "BCLK: I2S bit clock pin.\nLRCLK: I2S left-right clock pin.\nDOUT: I2S data output pin.\nfilename: Audio file path stored on SD card (MP3 or WAV)."
+                },
+                {
+                  "header": "Returns",
+                  "description": "Starts playback of the selected audio file through the I2S audio output."
+                }
+              ],
+              "examples": [
+                "#include <Arduino.h>\n#include \"FS.h\"\n#include \"SD_MMC.h\"\n#include \"AudioGeneratorMP3.h\"\n#include \"AudioFileSourceFS.h\"\n#include \"AudioOutputI2S.h\"\n\nAudioGeneratorMP3 *mp3;\nAudioFileSourceFS *file;\nAudioOutputI2S *out;\n\nvoid setup() {\n  Serial.begin(115200);\n\n  SD_MMC.setPins(39, 38, 40);\n  if (!SD_MMC.begin(\"/sdcard\", true)) {\n    Serial.println(\"SD mount failed\");\n    return;\n  }\n\n  out = new AudioOutputI2S();\n  out->SetPinout(41, 43, 42);\n  out->SetGain(1.0);\n\n  //give the file path for play the m3 file\n  file = new AudioFileSourceFS(SD_MMC, \"/new.mp3\");\n  mp3 = new AudioGeneratorMP3();\n\n  mp3->begin(file, out);\n}\n\nvoid loop() {\n  if (mp3->isRunning()) {\n    mp3->loop();\n  }\n}\n\n"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Outputs",
+          "entries": [
+            {
+              "name": "servoOutput",
+              "description": "Controls an external servo motor connected to the board using PWM signals. The servo motor rotates to a specific angle between 0° and 180° by generating the appropriate PWM signal on the connected port.",
+              "sections": [
+                {
+                  "header": "Library",
+                  "description": "This example uses the ESP32Servo library to control a servo motor.\n\n1.  Library Name:\n\tESP32Servo\n\n2.   Include the library at the beginning of the program:\n\t#include <ESP32Servo.h>\n\n3.   Library Initialization Syntax:\n\tServo servoObject;\n\n4.  Attach the servo to a pin:\n\tservoObject.attach(port, min_pulse, max_pulse);\n\n5.   Parameters:\n\tport : The GPIO port where the servo signal wire is connected.\n\tmin_pulse : Minimum pulse width in microseconds (typically around 500).\n\tmax_pulse : Maximum pulse width in microseconds (typically around 2400)."
+                },
+                {
+                  "header": "Initialization",
+                  "description": "Define the servo port before starting the program:\n\n#define SERVO_PIN 1\n\nSERVO_PIN: The GPIO port where the servo motor control wire is connected. Use the correct external port number according to the hardware documentation."
+                },
+                {
+                  "header": "Syntax",
+                  "description": "Create a servo object and attach it to a pin in the setup() function:\n\nServo myServo;\nmyServo.attach(SERVO_PIN, 500, 2400);\n\nControl the servo angle inside the loop() function using:\n\nmyServo.write(angle);"
+                },
+                {
+                  "header": "Parameters",
+                  "description": "angle : The position to rotate the servo motor, specified in degrees (0–180).\n\nSERVO_PIN : The GPIO port connected to the servo signal wire."
+                },
+                {
+                  "header": "Returns",
+                  "description": "These functions do not return any value. They generate a PWM signal that moves the connected servo motor to the specified angle."
+                }
+              ],
+              "examples": [
+                "#include <ESP32Servo.h>\n\nServo myServo;\n\n#define SERVO_PIN 1\n\nvoid setup() {\n  myServo.attach(SERVO_PIN, 500, 2400);\n}\n\nvoid loop() {\n  myServo.write(90);  // Rotate to 90 degrees\n  delay(1000);\n\n  myServo.write(0);   // Rotate back to 0 degrees\n  delay(1000);\n}"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "SD Card Read/Write",
+          "entries": [
+            {
+              "name": "sdCarWrite",
+              "description": "Writes and reads text data from a file stored on the SD card using the SD_MMC interface.",
+              "sections": [
+                {
+                  "header": "Library",
+                  "description": "1.\tLibrary Name: FS, SD_MMC\n\n2.\tInclude Syntax:\n\t#include \"FS.h\"\n\t#include \"SD_MMC.h\""
+                },
+                {
+                  "header": "Initialization",
+                  "description": "SD_MMC.setPins(clk, cmd, d0);\nSD_MMC.begin(\"/sdcard\", true);\nInitializes the SD card using MMC interface and sets custom SD pins."
+                },
+                {
+                  "header": "Syntax",
+                  "description": "File file = SD_MMC.open(\"/filename.txt\", FILE_WRITE);\nfile.println(\"text data\");\nfile.close();"
+                },
+                {
+                  "header": "Parameters",
+                  "description": "clk: SD clock pin.\ncmd: SD command pin.\nd0: SD data pin.\nfilename: Name of the file stored on the SD card.\nFILE_WRITE: Opens the file in write mode.\nFILE_READ: Opens the file in read mode."
+                },
+                {
+                  "header": "Returns",
+                  "description": "Returns a File object. If the file opens successfully, data can be written or read."
+                }
+              ],
+              "examples": [
+                "#include <Arduino.h>\n#include \"FS.h\"\n#include \"SD_MMC.h\"\n\nvoid setup() {\n  Serial.begin(115200);\n delay(500);\n\n  SD_MMC.setPins(39, 38, 40);\n\n  if (!SD_MMC.begin(\"/sdcard\", true)) {\n    Serial.println(\"SD_MMC begin failed\");\n    return;\n  }\n\n  File f = SD_MMC.open(\"/hello.txt\", FILE_WRITE);\n  if (f) {\n    f.println(\"Hello World\");\n    f.close();\n  }\n}\n\nvoid loop() {\n}"
+              ]
+            },
+            {
+              "name": "sdCardCRead",
+              "description": "Reads text data from a file stored on the SD card using the SD_MMC interface and prints it to Serial.",
+              "sections": [
+                {
+                  "header": "Library",
+                  "description": "1.\tLibrary Name: FS, SD_MMC\n\n2.\tInclude Syntax:\n\t#include \"FS.h\"\n\t#include \"SD_MMC.h\""
+                },
+                {
+                  "header": "Initialization",
+                  "description": "SD_MMC.setPins(clk, cmd, d0);\nSD_MMC.begin(\"/sdcard\", true);\nInitializes the SD card using the MMC interface."
+                },
+                {
+                  "header": "Syntax",
+                  "description": "File file = SD_MMC.open(\"/filename.txt\", FILE_READ);\nwhile(file.available()){\n  Serial.write(file.read());\n}\nfile.close();"
+                },
+                {
+                  "header": "Parameters",
+                  "description": "clk: SD clock pin.\ncmd: SD command pin.\nd0: SD data pin.\nfilename: Name of the file stored on the SD card.\nFILE_READ: Opens the file in read mode."
+                },
+                {
+                  "header": "Returns",
+                  "description": "Returns a File object. If the file opens successfully, data can be read from it."
+                }
+              ],
+              "examples": [
+                "#include <Arduino.h>\n#include \"FS.h\"\n#include \"SD_MMC.h\"\n\nvoid setup() {\n  Serial.begin(115200);\ndelay(500);\n  SD_MMC.setPins(39, 38, 40);\n\n  if (!SD_MMC.begin(\"/sdcard\", true)) {\n    Serial.println(\"SD_MMC Mount Failed\");\n    return;\n  }\n\n  File file = SD_MMC.open(\"/hello.txt\", FILE_READ);\n  while (file.available()) {\n    Serial.write(file.read());\n  }\n  file.close();\n}\n\nvoid loop() {}\n"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Other Functions",
+          "entries": [
+            {
+              "name": "serialServoAngleChange",
+              "description": "Moves a serial bus servo to a specified angle by sending position commands through UART communication.",
+              "sections": [
+                {
+                  "header": "Library",
+                  "description": "1. Library Name: Arduino\n\n2. Include Syntax:\n#include <Arduino.h>"
+                },
+                {
+                  "header": "Initialization",
+                  "description": "Serial1.begin(BAUDRATE, SERIAL_8N1, RX_PIN, TX_PIN);\nInitializes UART communication with the serial servo."
+                },
+                {
+                  "header": "Syntax",
+                  "description": "DS_ServoMove(id, position, time);"
+                },
+                {
+                  "header": "Parameters",
+                  "description": "id: Servo ID number.\nposition: Target servo position value.\ntime: Time in milliseconds for the servo to reach the position."
+                },
+                {
+                  "header": "Returns",
+                  "description": "Sends a command packet to the servo to change its position."
+                }
+              ],
+              "examples": [
+                "#include <Arduino.h>\n\n#define SERIAL_SERVO_RX 1\n#define SERIAL_SERVO_TX 2\n#define BAUDRATE 115200\n\nuint8_t DsCheckSum(uint8_t buf[], uint8_t len) {\n  uint16_t temp = 0;\n  for (uint8_t i = 2; i < len - 1; i++) temp += buf[i];\n  temp = temp & 0xFF;\n  temp = ~temp;\n  return (uint8_t)temp;\n}\n\nvoid serialServo_config() {\n  Serial1.begin(BAUDRATE, SERIAL_8N1, SERIAL_SERVO_RX, SERIAL_SERVO_TX);\n  delay(50);\n}\n\nvoid DS_ServoMove(uint8_t id, int16_t position, uint16_t time) {\n  uint8_t buf[11] = {\n    0xFF, 0xFF, id, 0x07, 0x03, 0x2A,\n    (uint8_t)(position >> 8), (uint8_t)(position & 0xFF),\n    (uint8_t)(time >> 8), (uint8_t)(time & 0xFF), 0x00\n  };\n  buf[10] = DsCheckSum(buf, sizeof(buf));\n  Serial1.write(buf, sizeof(buf));\n}\n\nvoid setup() {\n  Serial.begin(115200);\n  serialServo_config();\n}\n\nvoid loop() {\n  DS_ServoMove(7, 500, 1000); // move servo ~90°\n  delay(2000);\n\n  DS_ServoMove(7, 900, 1000); // move servo near 180°\n  delay(2000);\n}\n"
+              ]
+            },
+            {
+              "name": "serialServoAngleRead",
+              "description": "Reads the current angle of a serial bus servo using UART communication and prints the angle in degrees.",
+              "sections": [
+                {
+                  "header": "Initialization",
+                  "description": "Serial1.begin(115200, SERIAL_8N1, RX_PIN, TX_PIN);\nInitializes UART communication with the serial servo."
+                },
+                {
+                  "header": "Syntax",
+                  "description": "int postion = DsServoReadPosition(id);"
+                },
+                {
+                  "header": "Parameters",
+                  "description": "id: Servo ID number to read the current position of the serial servo."
+                },
+                {
+                  "header": "Returns",
+                  "description": "Returns the servo postion value."
+                }
+              ],
+              "examples": [
+                "uint8_t DsCheckSum(uint8_t buf[], uint8_t len) {\n  uint16_t temp = 0;\n  for (uint8_t i = 2; i < len - 1; i++) temp += buf[i];\n  temp = temp & 0xFF;\n  temp = ~temp;\n  return (uint8_t)temp;\n}\n\nvoid serialServo_config() {\n  Serial1.begin(115200, SERIAL_8N1, 1, 2);\n  delay(50);\n}\n\n// === Read Servo Position ===\nint DsServoReadPosition(uint8_t id) {\n  uint8_t buf[8] = {0xFF, 0xFF, id, 0x04, 0x02, 0x38, 0x02, 0x00};\n  buf[7] = DsCheckSum(buf, sizeof(buf));\n  Serial1.write(buf, sizeof(buf));\n  delay(20);\n\n  if (Serial1.available() >= 8) {\n    uint8_t resp[16];\n    int len = Serial1.readBytes(resp, sizeof(resp));\n\n    if (len >= 8) {\n      int rawPos = (resp[len - 3] << 8) | resp[len - 2];\n      int degrees = map(rawPos, 0, 1000, 0, 180);\n      return degrees;\n    }\n  }\n  return -1;\n}\n\n// ================= MAIN =================\nvoid setup() {\n  Serial.begin(115200);\n  serialServo_config();\n  Serial.println(\"Servo ID=4 position monitor...\");}\n\nvoid loop() {\n  int pos = DsServoReadPosition(4);\n  if (pos >= 0) {\n   Serial.println(\"Servo Angle3: \" + String(pos));\n  }\nelse {\n    Serial.println(\"Failed to read position\");\n }\n  delay(200);\n}\n"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "variables": {
+      "title": "Variables",
+      "categories": []
+    }
+  }
+}

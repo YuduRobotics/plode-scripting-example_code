@@ -1,8 +1,5 @@
 {
-  "referenceList": [
-    "functions",
-    "variables"
-  ],
+  "referenceList": ["functions", "variables"],
   "referenceListDetails": {
     "functions": {
       "title": "Functions",
@@ -138,7 +135,7 @@
                 }
               ],
               "examples": [
-                "#include <Arduino.h>\n#include <QMI8658A.h>\n\n#define IMU_SDA 48\n#define IMU_SCL 47\n\nQMI8658A imu;\n\nvoid setup() {\n  Serial.begin(115200);\n\n  if (!imu.begin(&Wire, IMU_SDA, IMU_SCL)) {\n    Serial.println(\"IMU init failed!\");\n    while (1);\n  }\n}\n\nvoid loop() {\n  float ax, ay, az, gx, gy, gz, temp;\n\n  if (imu.readAll(ax, ay, az, gx, gy, gz, temp)) {\n    Serial.print(\"ACC X: \"); Serial.print(ax);\n    Serial.print(\" Y: \"); Serial.print(ay);\n    Serial.print(\" Z: \"); Serial.print(az);\n\n    Serial.print(\" | GYR X: \"); Serial.print(gx);\n    Serial.print(\" Y: \"); Serial.print(gy);\n    Serial.print(\" Z: \"); Serial.println(gz);\n\n    Serial.print(\"TEMP: \"); Serial.println(temp);\n  }\n\n  delay(300);\n}\n"
+                "#include <Wire.h>\n#include <QMI8658A.h>\n\n#define IMU_SDA 48\n#define IMU_SCL 47\n#define IMU_ADDR 0x6A   // try 0x6B if not detected\n\nQMI8658A imu;\n\nvoid setup() {\n  Serial.begin(115200);\n  delay(500);\n\n  Serial.println(\"Initializing IMU...\");\n\n  Wire.begin(IMU_SDA, IMU_SCL);\n  imu.begin(IMU_ADDR);\n\n  Serial.println(\"QMI8658A Ready!\");\n}\n\nvoid loop() {\n  float ax = imu.getAccX();\n  float ay = imu.getAccY();\n  float az = imu.getAccZ();\n\n  float gx = imu.getGyroX();\n  float gy = imu.getGyroY();\n  float gz = imu.getGyroZ();\n\n  Serial.print(\"accX: \"); Serial.println(ax);\n  Serial.print(\"accY: \"); Serial.println(ay);\n  Serial.print(\"accZ: \"); Serial.println(az);\n\n  Serial.print(\"gyrX: \"); Serial.println(gx);\n  Serial.print(\"gyrY: \"); Serial.println(gy);\n  Serial.print(\"gyrZ: \"); Serial.println(gz);\n\n  delay(300);\n}\n"
               ]
             }
           ]
@@ -152,7 +149,7 @@
               "sections": [
                 {
                   "header": "Library",
-                  "description": "Libraries Used:\n#include <Arduino.h>\n#include \"FS.h\"\n#include \"SD_MMC.h\"\n#include \"AudioGeneratorMP3.h\"\n#include \"AudioGeneratorWAV.h\"\n#include \"AudioFileSourceFS.h\"\n#include \"AudioFileSourceID3.h\"\n#include \"AudioOutputI2S.h\""
+                  "description": "1.\tLibraries Name:\n\tESP8266Audio\n\n2.\tInclude the library at the beginning of the program:\n\t#include <Arduino.h>\n\t#include \"FS.h\"\n\t#include \"SD_MMC.h\"\n\t#include \"AudioGeneratorMP3.h\"\n\t#include \"AudioGeneratorWAV.h\"\n\t#include \"AudioFileSourceFS.h\"\n\t#include \"AudioFileSourceID3.h\"\n\t#include \"AudioOutputI2S.h\""
                 },
                 {
                   "header": "Initialization",

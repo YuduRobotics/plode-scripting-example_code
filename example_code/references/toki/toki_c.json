@@ -1,1 +1,197 @@
-{}
+{
+  "referenceList": ["functions", "variables"],
+  "referenceListDetails": {
+    "functions": {
+      "title": "Functions",
+      "categories": [
+        {
+          "title": "Digital I/O",
+          "entries": [
+            {
+              "name": "GPIO_read",
+              "description": "Reads the digital input state from a GPIO pin using digitalRead() and prints the switch status to the Serial Monitor.",
+              "sections": [
+                {
+                  "header": "Syntax",
+                  "description": "pinMode(port, INPUT_PULLUP);\nstate = digitalRead(port);\nSerial.println(state);"
+                },
+                {
+                  "header": "Parameters",
+                  "description": "port: The GPIO pin used to read the digital input signal.\nINPUT_PULLUP: Configures the pin as an input with the internal pull-up resistor enabled."
+                },
+                {
+                  "header": "Returns",
+                  "description": "Returns HIGH (1) or LOW (0) depending on the switch state. In this example, HIGH prints \"Switch pressed\" and LOW prints \"Switch released\"."
+                }
+              ],
+              "examples": [
+                "#include <Arduino.h>\n#include \"toki.h\"\n\n#define TACT GPIOA_NUM_15\n\nvoid setup() {\n  Serial.begin(115200);\n  pinMode(TACT, INPUT_PULLUP);\n}\n\nvoid loop() {\n  int switchState = digitalRead(TACT);\n\n  if (switchState == HIGH) {\n    Serial.println(\"Switch pressed\");\n  } else {\n    Serial.println(\"Switch released\");\n  }\n\n  delay(200);\n}\n"
+              ]
+            },
+            {
+              "name": "digitalOutput",
+              "description": "Controls a device connected to a GPIO pin using digital output. The pin GPIOA_NUM_11 is configured as OUTPUT and the state is changed using digitalWrite() to turn the device ON or OFF.",
+              "sections": [
+                {
+                  "header": "Syntax",
+                  "description": "pinMode(port, OUTPUT);\n\ndigitalWrite(port, HIGH);\ndigitalWrite(port, LOW);"
+                },
+                {
+                  "header": "Parameters",
+                  "description": "port: The GPIO pin used for digital output.\nOUTPUT: Configures the pin as an output pin.\nHIGH: Sets the pin voltage HIGH to turn the connected device ON.\nLOW: Sets the pin voltage LOW to turn the connected device OFF."
+                },
+                {
+                  "header": "Returns",
+                  "description": "These functions do not return any value. They only change the digital state of the selected GPIO port."
+                }
+              ],
+              "examples": [
+                "#include <Arduino.h>\n#include \"toki.h\"\n\n#define LED_PIN GPIOA_NUM_11\n\nvoid setup() {\n  Serial.begin(115200);\n  pinMode(LED_PIN, OUTPUT);\n}\n\nvoid loop() {\n  digitalWrite(LED_PIN, HIGH);\n  delay(1000);\n  digitalWrite(LED_PIN, LOW);\n  delay(1000);\n}\n"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Analog I/O",
+          "entries": [
+            {
+              "name": "ADC_read",
+              "description": "Reads the analog input value from GPIOA_NUM_15 using analogRead() and prints the value to the Serial Monitor.",
+              "sections": [
+                {
+                  "header": "Syntax",
+                  "description": "pinMode(port, INPUT);\nvalue = analogRead(port);\nSerial.println(value);"
+                },
+                {
+                  "header": "Parameters",
+                  "description": "port: The GPIO pin configured as an analog input.\nINPUT: Configures the pin as an input to read the analog signal."
+                },
+                {
+                  "header": "Returns",
+                  "description": "Returns the analog value read from the pin. The value range depends on the ADC resolution of the board."
+                }
+              ],
+              "examples": [
+                "#include <Arduino.h>\n#include \"toki.h\"\n\n#define ANALOG_PIN GPIOA_NUM_15\n\nvoid setup() {\n  Serial.begin(115200);\n  pinMode(ANALOG_PIN, INPUT);\n}\n\nvoid loop() {\n  int analogValue = analogRead(ANALOG_PIN);\n  Serial.println(analogValue);\n  delay(200);\n}\n"
+              ]
+            },
+            {
+              "name": "analogOutput",
+              "description": "Generates an analog-like output signal on GPIOA_NUM_15 using software PWM by controlling the duty cycle with digitalWrite().",
+              "sections": [
+                {
+                  "header": "Initialization",
+                  "description": "Define the output pin before starting the program:\n\npinMode(GPIOA_NUM_15, OUTPUT);\n\nGPIOA_NUM_15: The GPIO pin used to generate the PWM signal."
+                },
+                {
+                  "header": "Syntax",
+                  "description": "void softPWM(uint8_t dutyPercent, uint16_t total_time_ms) {\n  int loop_num = total_time_ms / 10;\n\n  for (int i = 0; i < loop_num; i++) {\n    digitalWrite(GPIOA_NUM_15, HIGH);\n    delay(dutyPercent / 10);\n\n    digitalWrite(GPIOA_NUM_15, LOW);\n    delay((100 - dutyPercent) / 10);\n  }\n}"
+                },
+                {
+                  "header": "Parameters",
+                  "description": "dutyPercent: Duty cycle percentage (0–100) controlling signal ON time.\n\ntotal_time_ms: Total duration in milliseconds for which PWM signal is generated.\n\nGPIOA_NUM_15: The GPIO pin used for output."
+                },
+                {
+                  "header": "Returns",
+                  "description": "This function does not return any value. It generates a PWM signal by toggling the GPIO pin HIGH and LOW."
+                }
+              ],
+              "examples": [
+                "#include <Arduino.h>\n#include \"toki.h\"\n\nvoid setup() {\n  pinMode(GPIOA_NUM_15, OUTPUT);\n}\n\nvoid softPWM(uint8_t dutyPercent, uint16_t total_time_ms) {\n  int loop_num = total_time_ms / 10;\n\n  for (int i = 0; i < loop_num; i++) {\n    digitalWrite(GPIOA_NUM_15, HIGH);\n    delay(dutyPercent / 10);\n\n    digitalWrite(GPIOA_NUM_15, LOW);\n    delay((100 - dutyPercent) / 10);\n  }\n}\n\nvoid loop() {\n  softPWM(100, 1000);\n  softPWM(50, 1000);\n}\n"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Inputs",
+          "entries": [
+            {
+              "name": "ultrasonicRead",
+              "description": "Measures distance using an ultrasonic sensor connected to GPIOA_NUM_14 by sending a trigger pulse and calculating the echo pulse duration.",
+              "sections": [
+                {
+                  "header": "Initialization",
+                  "description": "Define the ultrasonic pin before starting the program:\n\n#define ULTRASONIC_PIN GPIOA_NUM_14\n\nULTRASONIC_PIN: The GPIO pin used for both trigger and echo signal."
+                },
+                {
+                  "header": "Syntax",
+                  "description": "Set pin as OUTPUT to send trigger pulse, then switch to INPUT to read echo:\n\npinMode(pin, OUTPUT);\ndigitalWrite(pin, LOW);\ndelayMicroseconds(2);\ndigitalWrite(pin, HIGH);\ndelayMicroseconds(10);\ndigitalWrite(pin, LOW);\n\npinMode(pin, INPUT);\nduration = measurePulse(pin, HIGH, timeout);\n\ndistance = duration * 0.0343 / 2;"
+                },
+                {
+                  "header": "Parameters",
+                  "description": "pin: GPIO pin connected to ultrasonic sensor.\nstate: HIGH to measure echo pulse.\ntimeout: Maximum wait time for pulse in microseconds.\n\nDistance is calculated in centimeters using speed of sound."
+                },
+                {
+                  "header": "Returns",
+                  "description": "Returns the calculated distance in centimeters. If no pulse is received within timeout, distance will be zero."
+                }
+              ],
+              "examples": [
+                "#include <Arduino.h>\n#include \"toki.h\"\n\n#define ULTRASONIC_PIN GPIOA_NUM_14\n\nunsigned long measurePulse(gpio_num_t pin, uint8_t state, unsigned long timeout) {\n  unsigned long start = micros();\n  while (digitalRead(pin) != state) {\n    if (micros() - start >= timeout) return 0;\n  }\n  unsigned long pulseStart = micros();\n  while (digitalRead(pin) == state) {\n    if (micros() - start >= timeout) return 0;\n  }\n  return micros() - pulseStart;\n}\n\nvoid setup() {\n  Serial.begin(9600);\n}\n\nvoid loop() {\n  pinMode(ULTRASONIC_PIN, OUTPUT);\n  digitalWrite(ULTRASONIC_PIN, LOW);\n  delayMicroseconds(2);\n  digitalWrite(ULTRASONIC_PIN, HIGH);\n  delayMicroseconds(10);\n  digitalWrite(ULTRASONIC_PIN, LOW);\n\n  pinMode(ULTRASONIC_PIN, INPUT);\n  unsigned long duration = measurePulse(ULTRASONIC_PIN, HIGH, 30000);\n\n  float distance = duration * 0.0343f / 2.0f;\n  Serial.print(\"Distance: \");\n  Serial.print(distance, 1);\n  Serial.println(\" cm\");\n\n  delay(500);\n}\n"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Outputs",
+          "entries": [
+            {
+              "name": "servoOutput",
+              "description": "Controls a servo motor connected to GPIOB_NUM_4 using a manually generated PWM signal. The servo angle is controlled by changing the pulse width between 1000 and 2000 microseconds.",
+              "sections": [
+                {
+                  "header": "Initialization",
+                  "description": "Define the servo pin before starting the program:\n\n#define servoPin GPIOB_NUM_4\n\nservoPin: The GPIO port where the servo motor control signal wire is connected."
+                },
+                {
+                  "header": "Syntax",
+                  "description": "pinMode(servoPin, OUTPUT);\n\nvoid servoWrite(int angle) {\n  int pulseWidth = map(angle, 0, 180, 1000, 2000);\n  digitalWrite(servoPin, HIGH);\n  delayMicroseconds(pulseWidth);\n  digitalWrite(servoPin, LOW);\n  delayMicroseconds(20000 - pulseWidth);\n}"
+                },
+                {
+                  "header": "Parameters",
+                  "description": "angle: The position to rotate the servo motor, specified in degrees (0–180).\n\nservoPin: The GPIO port connected to the servo motor signal wire."
+                },
+                {
+                  "header": "Returns",
+                  "description": "This function does not return any value. It generates a PWM pulse that moves the connected servo motor to the specified angle."
+                }
+              ],
+              "examples": [
+                "#include <Arduino.h>\n#include \"toki.h\"\n\n#define servoPin GPIOA_NUM_10\n\nvoid setup() {\n  pinMode(servoPin, OUTPUT);\n}\n\nvoid servoWrite(int angle) {\n  int pulseWidth = map(angle, 0, 180, 1000, 2000);\n  digitalWrite(servoPin, HIGH);\n  delayMicroseconds(pulseWidth);\n  digitalWrite(servoPin, LOW);\n  delayMicroseconds(20000 - pulseWidth);\n}\n\nvoid loop() {\n  servoWrite(180);\n  delay(1000);\n\n  servoWrite(0);\n  delay(1000);\n}\n"
+              ]
+            },
+            {
+              "name": "motorControl",
+              "description": "Controls a DC motor using two GPIO pins: one for direction (GPIOA_NUM_13) and one for speed control (GPIOA_NUM_12) using software PWM.",
+              "sections": [
+                {
+                  "header": "Initialization",
+                  "description": "Define motor control pins before starting the program:\n\n#define MotorPinPWM GPIOA_NUM_12\n#define MotorPinDir GPIOA_NUM_13\n\nMotorPinPWM: Controls motor speed using PWM.\nMotorPinDir: Controls motor rotation direction."
+                },
+                {
+                  "header": "Syntax",
+                  "description": "pinMode(MotorPinPWM, OUTPUT);\npinMode(MotorPinDir, OUTPUT);\n\ndigitalWrite(MotorPinDir, HIGH); // Direction\nsoftPWM(dutyPercent, time);\n\ndigitalWrite(MotorPinDir, LOW); // Reverse Direction\nsoftPWM(dutyPercent, time);"
+                },
+                {
+                  "header": "Parameters",
+                  "description": "dutyPercent: Speed control percentage (0–100).\n\ntotal_time_ms: Duration to run the motor.\n\nMotorPinPWM: GPIO pin used for PWM signal.\nMotorPinDir: GPIO pin used to control direction (HIGH or LOW)."
+                },
+                {
+                  "header": "Returns",
+                  "description": "These functions do not return any value. They control motor speed and direction using GPIO signals."
+                }
+              ],
+              "examples": [
+                "#include <Arduino.h>\n#include \"toki.h\"\n\n#define MotorPinPWM GPIOA_NUM_12\n#define MotorPinDir GPIOA_NUM_13\n\nvoid setup() {\n  pinMode(MotorPinPWM, OUTPUT);\n  pinMode(MotorPinDir, OUTPUT);\n}\n\nvoid softPWM(uint8_t dutyPercent, uint16_t total_time_ms) {\n  int loop_num = total_time_ms / 10;\n  for (int i = 0; i < loop_num; i++) {\n    digitalWrite(MotorPinPWM, HIGH);\n    delay(dutyPercent / 10);\n    digitalWrite(MotorPinPWM, LOW);\n    delay((100 - dutyPercent) / 10);\n  }\n}\n\nvoid loop() {\n  digitalWrite(MotorPinDir, HIGH);\n  softPWM(30, 2000);\n\n  digitalWrite(MotorPinDir, LOW);\n  softPWM(30, 2000);\n}\n"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "variables": {
+      "title": "Variables",
+      "categories": []
+    }
+  }
+}
