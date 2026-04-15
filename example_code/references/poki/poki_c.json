@@ -1,24 +1,4 @@
 {
-  "referenceList": [
-    "Functions"
-  ],
-  "referenceListDetails": {
-    "Functions": {
-      "title": "Functions",
-      "categories": [
-        {
-          "title": "Digital I/O",
-          "entries": [
-            {
-              "name": "digitalWrite",
-              "examples": [
-                "void setup() {\n    pinMode(13, OUTPUT);   // Set pin 13 as output\n}\n\nvoid loop() {\n    digitalWrite(13, HIGH);  // Turn ON LED\n}"
-              ],
-              "sections": []
-            }
-          ]
-        }
-      ]
-    }
-  }
+  "referenceList": [],
+  "referenceListDetails": {}
 }
